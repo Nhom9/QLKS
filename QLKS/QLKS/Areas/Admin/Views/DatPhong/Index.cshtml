@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Data_Access.DTO.THUEPHONG>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="table_id" class="table">
+    <thead>
+        <tr>
+            <th>
+                Ngày Thuê
+            </th>
+            <th>
+                Ngày Trả
+            </th>
+
+            <th>
+                Khách Hàng
+            </th>
+            <th>
+                Phòng
+            </th>
+            <th>
+                Nhân Viên
+            </th>
+            <th>
+                Tổng Tiền
+            </th>
+            <th>
+                Tình trạng
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDPHONG)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDNHANVIEN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CMND)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NGAYTHUE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NGAYDI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.STATUS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TONGTIEN)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

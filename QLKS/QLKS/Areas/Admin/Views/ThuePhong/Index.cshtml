@@ -1,0 +1,107 @@
+﻿@model QLKS.Areas.Admin.Models.TestDK
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Asset/Shelf/css/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
+    <link href="~/Asset/Shelf/css/waitingforname.css" rel="stylesheet" />
+    <script src="~/Asset/Shelf/js/Collapse.js"></script>
+    <script src="~/Asset/Shelf/js/Collapse_Mobile.js"></script>
+    <script src="~/Asset/Shelf/js/DynamicDropDown.js"></script>
+    <script src="~/Asset/Shelf/js/modernizr-2.5.3.js"></script>
+    <script src="~/Asset/Shelf/js/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <div data-role="main" class="ui-content">
+            <div data-role="collapsible">
+                <h1>Phiếu thuê</h1>
+                <div data-role="main" class="ui-content">
+                    <div data-role="collapsible">
+                        <h1>Thông tin người đăng kí</h1>
+                        @*@RenderPage("_ThongTinNguoiDK.cshtml")*@
+                        @*@Html.Partial("ThongTin")*@
+                        <h5 style=" color: red"> @ViewBag.ThongBao </h5>
+                        @Html.TextBoxFor(model => model.TenDK, new { @placeholder = "Tên đăng kí", @required = "" })
+                        @Html.TextBoxFor(model => model.CMND, new { @placeholder = "Chứng minh thư", @required = "" })
+                        @Html.TextBoxFor(model => model.DiaChi, new { @placeholder = "Địa chỉ" })
+                        @Html.TextBoxFor(model => model.SDT, new { @placeholder = "Số điện thoại" })
+                    </div>
+                </div>
+                <div data-role="main" class="ui-content">
+                    <div data-role="collapsible">
+                        @*RenderPage("_ChonPhong.cshtml")*@
+                        <h4>Loại Phòng :</h4>
+                        @*Html.DropDownList("ddl1", ViewBag.idLoaiPhong as SelectList, "---select---")
+                            @Html.DropDownList("var1", "Chọn loại phòng")*@
+
+                        @Html.DropDownList("var1", null, htmlAttributes: new { @class = "form-control", @onchange = "myFunction()" })
+
+                        <h4>Phòng :</h4>
+                        @*@Html.DropDownList("ddl2", ViewBag.idPhong as SelectList,"----Select----")
+                            @Html.DropDownList("var2", "Chọn phòng")*@
+                        @Html.DropDownList("var2", null, htmlAttributes: new { @class = "form-control tenphong" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+    @*<script>
+
+        function myFunction() {
+
+            $.ajax({
+                url: 'Test/' + $('#var1 :selected').val(),
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    $(".tenphong").html('<option value=""> Vui lòng chọn phòng</option>');
+                    $.each(data, function () {
+                        $(".tenphong").append('<option value="' + this.id + '">' + this.tenPhong + '</option>');
+                    });
+                },
+                error: function (err) {
+                    alert("Có lỗi, vui lòng load lại !");
+                }
+            })
+
+        }
+    </script>*@
+    <script type="text/javascript">
+      
+
+        function openSelect(evt, id) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementById(id);
+            d
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        $(function () {
+            $("#var1").change(function () {
+                var name = $("#var1 :selected").text();  //if user select the tournament
+                var url = 'Test/Phong';
+                var data1 = { "id": id };
+                $.post(url, data1, function (data) {    //ajax call
+                    var items = [];
+                    items.push("<option value=" + 0 + ">" + "Phòng" + "</option>"); //first item
+                    for (var i = 0; i < data.length; i++) {
+                        items.push("<option value=" + data[i].Value + ">" + data[i].Text + "</option>");
+                    }                                         //all data from the team table push into array
+                    $("#var2").html(items.join(' '));
+                })                                            //array object bind to dropdown list
+            });
+
+    </script>
+</body>
+</html>
+

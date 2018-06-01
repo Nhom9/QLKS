@@ -1,0 +1,58 @@
+﻿@model Data_Access.DTO.CHITIETPHONGLOAD
+
+@{
+    ViewBag.Title = "ThemNguoi";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@Html.ActionLink("Trở lại","DetailPhong",new { id = Model.IDCT})
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.IDCT)
+    @Html.HiddenFor(model => model.TenPhong)
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.Label("Phòng", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width: 200px">
+                @Html.DisplayFor(model => model.TenPhong)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Họ Tên", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width: 200px">
+                @Html.EditorFor(model => model.HOTEN, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HOTEN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("CMND", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width: 200px">
+                @Html.EditorFor(model => model.CMND, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Số Điện Thoại", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width: 200px">
+                @Html.EditorFor(model => model.SoDienThoai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Trưởng Phòng", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="width: 200px">
+                @Html.EditorFor(model => model.TRUONGPHONG)
+            </div>
+        </div>
+        <button type="submit" style=" margin-left: 250px" class="btn btn-outline btn-success">Create</button>
+
+    </div>
+}

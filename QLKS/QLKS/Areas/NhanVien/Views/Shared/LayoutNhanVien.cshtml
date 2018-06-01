@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title> Diamond_Hotel </title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Asset/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Asset/vendor/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <!-- MetisMenu CSS -->
+    <link href="~/Asset/vendor/metisMenu/metisMenu.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="~/Asset/dist/css/sb-admin-2.css" rel="stylesheet" />
+    <link href="~/Asset/dist/css/sb-admin-2.min.css" rel="stylesheet" />
+    <!-- Morris Charts CSS -->
+    <link href="~/Asset/vendor/morrisjs/morris.css" rel="stylesheet" />
+    <!-- Custom Fonts -->
+    <link href="~/Asset/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #fae0e0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" style="color:black; padding-bottom: 10px" href="#">
+                    <p>
+                        <i class="fa fa-home"></i> Hệ thống Quản Lí Khách Sạn &nbsp; |
+                    </p>
+
+                </a>
+            </div>
+            <!-- /.navbar-header -->
+            <ul class="nav navbar-top-links navbar-right">
+                <li style="padding-right:400px">
+                    <h5> <i class="fa fa-heart-o"></i> Address: 211 Hàm Nghi, phường Bến Nghé, Quận 1  </h5>
+                </li>
+                <!-- /.dropdown -->
+                <li>
+                    <a href="#"><i class="fa fa-user fa-fw"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                </li>
+                <li>
+                    <p><i class="fa fa-sign-out fa-fw"></i>@Html.ActionLink("Logout", "Logout", "Login")</p>
+                </li>
+
+                <!-- /.dropdown-user -->
+                <!-- /.dropdown -->
+            </ul>
+
+            <!-- /.navbar-top-links -->
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li style=" padding-left:15px; padding-top: 10px">
+
+                        </li>
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+
+                        <li>
+                            <br />
+                        </li>
+                        <li style="padding-left:15px; padding-top: 7px">
+                            <p><i class="fa fa-list"></i> @Html.ActionLink("Danh Sách Phòng Thuê", "Index", "Test1")  </p>
+                        </li>
+                        <li style=" padding-left:15px; padding-top: 7px">
+                            <p><i class="fa fa-calendar"></i> @Html.ActionLink("Khách Hàng", "Index", "ChiTietPhong")  </p>
+                        </li>
+                        <li style="padding-left:15px; padding-top: 7px">
+                            <p><i class="fa fa-glass"></i> @Html.ActionLink("Sử Dụng Dịch Vụ", "Index", "SDDV")  </p>
+                        </li>
+                    
+                        <li style=" padding-left:15px; padding-top: 7px">
+                            <p><i class="fa fa-star-half-full"></i> @Html.ActionLink("Danh Sách Phòng", "Index", "DanhSachPhong")  </p>
+                        </li>
+                        <li style=" padding-left:15px; padding-top: 7px">
+                            <p><i class="fa fa-calendar"></i> @Html.ActionLink("Loại Phòng", "Index", "LoaiPhong")  </p>
+                        </li>
+
+
+
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-header">
+                        <h3>
+                            <img style="width:90px ; height:80px" src="~/Asset/images/kimcuong.jpg" />    @Html.ActionLink(" Diamond Hotel", "Test", "Test1") &nbsp; |
+                            <img style="width:30px ; height:30px" src="~/Asset/images/ngsao2.png" /> <img style="width:30px ; height:30px" src="~/Asset/images/ngsao2.png" />    <img style="width:30px ; height:30px" src="~/Asset/images/ngsao2.png" />  <img style="width:30px ; height:30px" src="~/Asset/images/ngsao2.png" />
+
+                        </h3>
+
+                    </div>
+                    <div>
+                        @RenderBody()
+                    </div>
+                </div>
+                <!-- /.col-lg-12 -->
+                <!-- /.row -->
+                <!-- /.panel-body -->
+
+
+
+            </div>
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+
+
+    <link href="~/Content/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <!--boostrap-->
+    <!--hàm js để đưa datatable vs table id = "table_id" datatable có sẵn hết-->
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable({
+                "pagingType": "full_numbers",
+            });
+        });
+    </script>
+
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <script src="~/Asset/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Asset/vendor/jquery/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Asset/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <link href="~/Asset/vendor/metisMenu/metisMenu.css" rel="stylesheet" />
+    <link href="~/Asset/vendor/metisMenu/metisMenu.min.css" rel="stylesheet" />
+
+    <script src="~/Asset/vendor/metisMenu/metisMenu.js"></script>
+    <script src="~/Asset/vendor/metisMenu/metisMenu.min.js"></script>
+    <!-- Morris Charts JavaScript -->
+    <script src="~/Asset/vendor/raphael/raphael.min.js"></script>
+    <script src="~/Asset/vendor/morrisjs/morris.min.js"></script>
+    <script src="~/Asset/data/morris-data.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="~/Asset/dist/js/sb-admin-2.min.js"></script>
+    @RenderSection("jsFooter1", required: false)
+
+    <script>
+        function myFunction() {
+            // ajax là dùng để load bất đồng bộ//
+            // hàm này gọi ajax nó truyền vào url lấy phòng theo id
+            $.ajax({
+                url: '/thuephong/GetDropDownTenPhong/' + $('#var1 :selected').val(),
+                type: 'POST',
+                dataType: 'json',
+
+                success: function (data) {
+                    // khi load thành công thì nó vào chỗ này
+
+                    $(".tenphong").html('<option value="">Vui lòng chọn phòng</option>');// dùng để thêm option vào dropdownlist
+                    $.each(data, function () {
+                        //this.id là để lấy id tương tự this.name là lấy name // vd this.status thì em lấy cột đó :)
+                        $(".tenphong").append('<option value="' + this.ID + '">' + this.TENPHONG + '</option>');
+                    });
+                },
+
+                error: function (err) {
+
+                    alert("Có lỗi, vui lòng load lại !");
+                }
+            })
+        }
+    </script>
+    <link href="~/Content/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <!--boostrap-->
+    <!--hàm js để đưa datatable vs table id = "table_id" datatable có sẵn hết-->
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable({
+                "pagingType": "full_numbers",
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

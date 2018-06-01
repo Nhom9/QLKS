@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Data_Access.DTO.LOAIPHONG>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<p>
+    <button type="submit" style=" text-decoration: none; color: black" class="btn btn-outline btn-danger">
+        @Html.ActionLink("Thêm Loại Phòng", "Create")
+    </button>
+
+</p>
+
+<table id="table_id" class="table" border="1">
+    <thead>
+        <tr>
+            <th style="width:100px">
+                Tên Phòng
+            </th>
+            <th style="width:260px">
+                Ảnh
+            </th>
+            <th style="width: 300px">
+                Mô Tả
+            </th>
+            <th style="width:100px">
+                Số Giường
+            </th>
+            <th style="width: 100px">
+                Giá
+            </th>
+            <th></th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="row_@item.ID">
+                <td>
+                    @Html.DisplayFor(modelItem => item.TEN)
+                </td>
+                <td style="width: 260px">
+                    <img src="@Url.Content("~/Asset/images/"+item.ANH)" style="height:200px; width:250px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MOTA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SOGIUONG)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DONGIA)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.ID })
+                </td>
+                <td>
+                    @Ajax.ActionLink("Xóa", "Delete", new { id = item.ID }, new AjaxOptions
+                    {
+                        OnComplete = "$('#row_" + @item.ID + "').remove()",
+                        HttpMethod = "Delete"
+                    })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

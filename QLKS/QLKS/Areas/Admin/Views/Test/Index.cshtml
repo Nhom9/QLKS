@@ -1,0 +1,180 @@
+﻿@model QLKS.Areas.Admin.Models.TestDK
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Asset/Shelf/css/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
+    <link href="~/Asset/Shelf/css/waitingforname.css" rel="stylesheet" />
+    <script src="~/Asset/Shelf/js/Collapse.js"></script>
+    <script src="~/Asset/Shelf/js/Collapse_Mobile.js"></script>
+    <script src="~/Asset/Shelf/js/DynamicDropDown.js"></script>
+    <script src="~/Asset/Shelf/js/modernizr-2.5.3.js"></script>
+    <script src="~/Asset/Shelf/js/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+    <div data-role="main" class="ui-content">
+        <div data-role="collapsible">
+            <h1>Phiếu thuê</h1>
+            <div data-role="main" class="ui-content">
+                <div data-role="collapsible">
+                    <h1>Thông tin người đăng kí</h1>
+                    @*@RenderPage("_ThongTinNguoiDK.cshtml")*@
+                    @*@Html.Partial("ThongTin")*@
+                    <h5 style=" color: red"> @ViewBag.ThongBao </h5>
+                    @Html.TextBoxFor(model => model.TenDK, new { @placeholder = "Tên đăng kí", @required = "" })
+                    @Html.TextBoxFor(model => model.CMND, new { @placeholder = "Chứng minh thư", @required = "" })
+                    @Html.TextBoxFor(model => model.DiaChi, new { @placeholder = "Địa chỉ" })
+                    @Html.TextBoxFor(model => model.SDT, new { @placeholder = "Số điện thoại" })
+                </div>
+            </div>
+            <div data-role="main" class="ui-content">
+                <div data-role="collapsible">
+                    @*RenderPage("_ChonPhong.cshtml")*@
+                    <h4>Loại Phòng :</h4>
+                    @*Html.DropDownList("ddl1", ViewBag.idLoaiPhong as SelectList, "---select---")
+                    @Html.DropDownList("var1", "Chọn loại phòng")*@
+                    
+                    @Html.DropDownList("var1", null, htmlAttributes: new { @class = "form-control", @onchange = "myFunction()" })
+
+                    <h4>Phòng :</h4>
+                    @*@Html.DropDownList("ddl2", ViewBag.idPhong as SelectList,"----Select----")*@
+                   
+                    @*@Html.DropDownList("var2", null, htmlAttributes: new { @class = "form-control tenphong" })
+                        @ViewData["var3"]
+                        *@
+
+                     @Html.DropDownList("var2", null, htmlAttributes: new { @class = "form-control tenphong" })
+                      
+                    
+                    <button type="Submit" onclick="testFunction()">Thêm</button>
+                  <div>
+                      <table id="myTable">
+                          <tr>
+                              <th>ID</th>
+                              <th>Phòng</th>
+                          </tr>
+                      </table>
+                  </div>  
+                </div>
+
+                    @*@Html.TextBoxFor(Model => Model.Sophong , new { @type = "number" } )*@
+                </div>
+            </div>
+            <button type="Submit">Xác nhận</button>
+        </div>
+        
+    }
+
+    <script>
+        function testFunction() {
+            $.ajax({
+                url: '/Test/layPhong/' + $('#var2 :selected').val(),
+                
+                type: 'POST',
+                dataType: 'json',
+                success : function (data) {
+                    var table = document.getElementById("myTable");
+                    var row = table.insertRow(-1);
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+                    cell1.innerHTML = this.ID;
+                    cell2.innerHTML = this.TENPHONG;
+
+                },
+                error: function (err) {
+                    // khi load không được thì nó vào hàm này,
+                    alert("Có lỗi, vui lòng load lại !");//báo lỗi trên màn hình
+                }
+
+            })
+
+        }
+        function myFunction() {
+            // ajax là dùng để load bất đồng bộ// nghe khó hiểu đúng không ? là vậy nè: khi chọn loại phòng thì nó gọi tới hàm myFunction
+            // hàm này gọi ajax nó truyền vào url lấy phòng theo id
+            $.ajax({
+                url: '/Test/GetPhong/' + $('#var1 :selected').val(),
+                type: 'POST',
+                dataType: 'json',
+
+                success: function (data) {
+                    // khi load thành công thì nó vào chỗ này
+
+                    $(".tenphong").html('<option value="">Vui lòng chọn phòng</option>');// dùng để thêm option vào dropdownlist
+                    $.each(data, function () {
+                        //this.id là để lấy id tương tự this.name là lấy name // vd this.status thì em lấy cột đó :)
+                        // ủa a, h e thêm ddkien chỉ load những phòng còn trống thôi. thì e thêm ở đâu, nó dính thêm cột status :'(
+                        $(".tenphong").append('<option value="' + this.ID + '">' + this.TENPHONG + '</option>');
+                    });// này là code jquery em có thể tìm hiểu trên mạng
+                },
+                //e còn chưa hình dung đc cái khúc tính tiền sẽ ntn. thấy lấy dữ lieuj nó tùm lum qá :((/sua database truoc di... lam code truoc sua database lai la met lam :)))
+                //
+                error: function (err) {
+                    // khi load không được thì nó vào hàm này,
+                    alert("Có lỗi, vui lòng load lại !");//báo lỗi trên màn hình
+                }
+            })
+        }
+        function myFunction1() {
+            // ajax là dùng để load bất đồng bộ// nghe khó hiểu đúng không ? là vậy nè: khi chọn loại phòng thì nó gọi tới hàm myFunction
+            // hàm này gọi ajax nó truyền vào url lấy phòng theo id
+            $.ajax({
+                url: '/Test/SoPhong/' + $('#var1 :selected').val(),
+                type: 'POST',
+                dataType: 'json',
+
+                success: function (data) {
+                    // khi load thành công thì nó vào chỗ này
+
+                    $(".tenphong").html('<option value="">Vui lòng chọn phòng</option>');// dùng để thêm option vào dropdownlist
+                    $.each(data, function () {
+                        //this.id là để lấy id tương tự this.name là lấy name // vd this.status thì em lấy cột đó :)
+                        // ủa a, h e thêm ddkien chỉ load những phòng còn trống thôi. thì e thêm ở đâu, nó dính thêm cột status :'(
+                        $(".tenphong").append('<option value="' + this.ID + '">' + this.TENPHONG + '</option>');
+                    });// này là code jquery em có thể tìm hiểu trên mạng
+                },
+                //e còn chưa hình dung đc cái khúc tính tiền sẽ ntn. thấy lấy dữ lieuj nó tùm lum qá :((/sua database truoc di... lam code truoc sua database lai la met lam :)))
+                //
+                error: function (err) {
+                    // khi load không được thì nó vào hàm này,
+                    alert("Có lỗi, vui lòng load lại !");//báo lỗi trên màn hình
+                }
+            })
+        }
+    </script>
+    <script type="text/javascript">
+        
+        function openSelect(evt, id) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementById(id);
+            d
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        $(function () {
+            $("#var1").change(function () {
+                var name = $("#var1 :selected").text();  //if user select the tournament
+                var url = 'Test/Phong';
+                var data1 = { "id": id };
+                $.post(url, data1, function (data) {    //ajax call
+                    var items = [];
+                    items.push("<option value=" + 0 + ">" + "Phòng" + "</option>"); //first item
+                    for (var i = 0; i < data.length; i++) {
+                        items.push("<option value=" + data[i].Value + ">" + data[i].Text + "</option>");
+                    }                                         //all data from the team table push into array
+                    $("#var2").html(items.join(' '));
+                })                                            //array object bind to dropdown list
+            });
+
+    </script>
+</body>
+</html>
+

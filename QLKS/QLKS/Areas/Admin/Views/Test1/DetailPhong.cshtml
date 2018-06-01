@@ -1,0 +1,219 @@
+﻿@model Data_Access.DTO.ThanhToanPhong
+
+@{
+    ViewBag.Title = "DetailPhong";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@Html.ActionLink("Trở về trang trước", "Index", "Test1")
+@using (Html.BeginForm())
+{<div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+
+                <li class="active">
+                    <i class="fa fa-edit"></i> Xác Nhận Thanh Toán
+                </li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Thông Tin Đặt Phòng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="col-md-6 col-sm-6 col-xs-12 padding-top-5">
+                                    <div style="width:35%;font-weight: bold;float: left;padding: 5px 0;">
+                                        CMND:
+                                    </div>
+                                    <div style="width:65%;float: left;padding: 5px 0;">
+                                        @Html.DisplayFor(model => model.CMND)
+                                    </div>
+                                    <div style="width:35%;font-weight: bold;float: left;padding: 5px 0;">
+                                        Họ &amp; tên khách:
+                                    </div>
+                                    <div style="width:65%;float: left;padding: 5px 0;">
+                                        @Html.DisplayFor(model => model.TTKH.TEN)
+                                    </div>
+                                    
+                                    <div style="width:35%;font-weight: bold;float: left;padding: 5px 0;">
+                                        Số điện thoại:
+                                    </div>
+                                    <div style="width:65%;float: left;padding: 5px 0;">
+                                        @Html.DisplayFor(model => model.TTKH.DIENTHOAI)
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 padding-top-5">
+                                    <div style="width:35%;font-weight: bold;float: left;padding: 5px 0;">
+                                        Tên công ty:
+                                    </div>
+                                   
+                                    <div style="width:65%;float: left;padding: 5px 0;">
+                                        @Html.DisplayFor(model => model.TTKH.TENCONGTY)
+                                    </div>
+                                    <br/>
+                                    <div style="width:35%;font-weight: bold;float: left;padding: 5px 0;">
+                                        Ngày nhận phòng:
+                                    </div>
+                                    <div style="width:65%;float: left;padding: 5px 0;">
+                                        @Html.DisplayFor(model => model.NgayThue)
+                                    </div>
+                                    <div style="width:35%;font-weight: bold;float: left;padding: 5px 0;">
+                                        Thời điểm hiện tại:
+                                    </div>
+                                    <div style="width:65%;float: left;padding: 5px 0;">
+                                        @Html.DisplayFor(model => model.NgayDi)
+                                    </div>
+                                    <div style="width:35%;font-weight: bold;float: left;padding: 5px 0;">
+                                        Đêm:
+                                    </div>
+                                    <div style="width:65%;float: left;padding: 5px 0;">
+                                        @Html.DisplayFor(model => model.NgayO)
+                                    </div>
+                                    <div style="width:35%;font-weight: bold;float: left;padding: 5px 0;">
+                                        Phòng :
+                                    </div>
+                                    <div style="width:65%;float: left;padding: 5px 0;">
+                                        @Html.DisplayFor(model => model.phong.TENPHONG)
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="col-lg-12">
+            @Html.ActionLink("Thêm người", "ThemNguoi", new { id = Model.ID })
+            <h3>Thông Chi Tiết Phòng</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr  style="background-color:#dbf8ff">
+                            <th>Tên khách</th>
+                            <th>CMND</th>
+                            <th>SĐT</th>
+                            <th>Trưởng Phòng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Chitietphong)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HOTEN)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CMND)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SoDienThoai)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TRUONGPHONG)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            @Html.ActionLink("Sử dụng dịch vụ", "DichVu", new { id = Model.ID })
+            <h3>Thông Tin Dịch Vụ</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr style="background-color:#dbf8ff">
+                            <th>STT</th>
+                            <th>Tên dịch vụ</th>
+                            <th>Số Lượng</th>
+                            <th>Giá dịch vụ</th>
+                            <th>Ngày dùng</th>
+                            <th>Thành Tiền</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Sddv)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ID)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SERVICES)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SOLUONG)
+                                </td>
+                                <td>
+                                    @(item.TONGTIEN / item.SOLUONG)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NGAY)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TONGTIEN)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-6">
+
+
+        </div>
+        <div class="col-lg-6">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <td>Tổng Tiền Dịch Vụ</td>
+                            <td>
+                                @Html.DisplayFor(model => model.TongTienDichVu)
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tổng Tiền Thuê Phòng</td>
+                            <td>
+                                @Html.DisplayFor(model => model.TongTien)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tiền Thanh Toán</td>
+                            <td>
+                                <p name="Tong" value="@(Model.TongTien + Model.TongTienDichVu)"> @(Model.TongTien + Model.TongTienDichVu)</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-12" style="text-align:center;">
+            ------------------------------------------------------------------------------------------------------------------------
+        </div>
+        <div class="form-group" style="margin-left:400px">
+            <div class="col-md-offset-2 col-md-10">
+                @*<input type="submit" value="Thanh Toán" class="btn btn-default" style="width:200px;" />*@
+            </div>
+        </div>
+    </div>
+}
+

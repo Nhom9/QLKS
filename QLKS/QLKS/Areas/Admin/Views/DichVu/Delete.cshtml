@@ -1,0 +1,38 @@
+﻿@model Data_Access.DTO.DICHVU
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Xóa dịch vụ @Url.Content(Model.TEN)</h3>
+<div>
+    <h4>DICHVU</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TEN)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TEN)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GIA)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GIA)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Trở lại danh sách", "Index")
+        </div>
+    }
+</div>

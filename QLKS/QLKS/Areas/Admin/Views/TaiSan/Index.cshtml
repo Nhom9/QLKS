@@ -1,0 +1,130 @@
+﻿@model IEnumerable<Data_Access.DTO.TAISANLOAD>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<p style="margin-left: 20px">
+        <button type="submit" style=" text-decoration: none; color: black" class="btn btn-outline btn-danger">
+            @Html.ActionLink("Thêm Tài Sản", "Create")
+        </button>
+
+    </p>
+
+<div class="col-lg-12">
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            Danh Sách Tiện Nghi
+        </div>
+        <div class="panel-body">
+
+            <table id="table_id" class="table" style="margin-top: 20px" border="1">
+                <thead>
+                    <tr>
+                        <th>
+                            Thiết Bị
+                        </th>
+                        <th>
+                            Loại
+                        </th>
+                        <th>
+                            Mã Phòng    
+                        </th>
+                        <th>
+                            Giá
+                        </th>
+                        <th>
+                            Số Lượng   
+                        </th>
+                        <th>
+                            Tình Trạng
+                        </th>
+                        <th>
+                            Ngày Cập Nhật
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        if (item.IDPHONG == 1)
+                        {
+                            <tr id="row_@item.ID">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TEN)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LOAI)
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.IDPHONG)*@
+                                    @Html.DisplayFor(modelItem => item.TENPHONG)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GIA)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SOLUONG)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.STATUS)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NGAY)
+                                </td>
+                                <td>
+
+                                    @(item.STATUS == true ? Html.Raw(@Html.ActionLink("Thêm sản phẩm cho phòng | ", "CreatePhong", new { id = item.ID })) : @Html.Raw(""))
+                                    @Html.ActionLink("Sửa", "Edit", new { id = item.ID }) |
+                                    @Ajax.ActionLink("Xóa", "Delete", new { id = item.ID }, new AjaxOptions
+                                    {
+                                        HttpMethod = "Delete"
+                                    })
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                    @foreach (var item in Model)
+                    {
+                        if (item.IDPHONG != 1)
+                        {
+                            <tr id="row_@item.ID">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TEN)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LOAI)
+                                </td>
+                                <td>
+                                    @*@Html.DisplayFor(modelItem => item.IDPHONG)*@
+                                    @Html.DisplayFor(modelItem => item.TENPHONG)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GIA)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SOLUONG)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.STATUS)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NGAY)
+                                </td>
+                                <td>
+                                    @*@Html.ActionLink("Sửa", "EditPhong", new { id = item.ID }) |*@
+                                    @Ajax.ActionLink("Xóa", "Delete", new { id = item.ID }, new AjaxOptions
+                                    {
+                                        HttpMethod = "Delete"
+                                    })
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

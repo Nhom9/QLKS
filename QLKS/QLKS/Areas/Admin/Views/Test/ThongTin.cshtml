@@ -1,0 +1,12 @@
+﻿@model QLKS.Areas.Admin.Models.TestDK
+
+@using (Html.BeginForm())
+
+{
+    <h5 style=" color: red"> @ViewBag.ThongBao </h5>
+@Html.TextBoxFor(model => model.TenDK, new { @placeholder = "Tên đăng kí", @required = "" })
+@Html.TextBoxFor(model => model.CMND, new { @placeholder = "Chứng minh thư", @required = "" })
+@Html.TextBoxFor(model => model.DiaChi, new { @placeholder = "Địa chỉ" })
+@Html.TextBoxFor(model => model.SDT, new { @placeholder = "Số điện thoại" })
+<button type="Submit">Xác nhận</button>
+}

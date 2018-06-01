@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Data_Access.DTO.NHANVIEN>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section jsFooter1{
+
+    <script src="~/Asset/js/NhanVienController.js"></script>
+}
+
+<h5>@ViewBag.ThongBao</h5>
+
+<p style="padding-left:20px">
+    <button type="submit" style=" text-decoration: none; color: black" class="btn btn-outline btn-danger">
+        @Html.ActionLink("Thêm Nhân Viên", "Create")
+    </button>
+
+</p>
+
+<div class="col-lg-12">
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            Nhân Viên
+        </div>
+        <div class="panel-body">
+            <table id="table_id" class="table" style="margin-top: 20px">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Id")
+                        </th>
+                        <th>
+                            Username
+                        </th>
+                        <th>
+                            Tên Hiển Thị
+                        </th>
+                        <th>
+                            Chức Vu
+                        </th>
+                        <th>
+                        </th>
+                        <th>
+                            @Html.DisplayName("Reset mật khẩu")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Xóa nhân viên")
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id="row_@item.ID">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.USERNAME)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TENHIENTHI)
+                            </td>
+                            <td>
+                                @(item.CHUCVU == 1 ? "Quản lý" : "Nhân viên")
+                            </td>
+                            <td>
+                                <a href="#" class="btn-active" data-id="@item.ID">@Html.Raw(item.CHUCVU == 1 ? "Giáng chức" : "Thăng chức")</a>
+                            </td>
+                            <td>
+                                @Ajax.ActionLink("Reset mật khẩu", "Reset", new { id = item.ID }, new AjaxOptions
+                                {
+                                    Confirm = "Reset mật khẩu",
+                                    HttpMethod = "Reset"
+                                })
+                            </td>
+                            <td>
+                                @Ajax.ActionLink("Xóa", "Delete", new { id = item.ID }, new AjaxOptions
+                                {
+                                    Confirm = "Bạn có muốn xóa nhân viên " + @item.TENHIENTHI + " không?",
+                                    OnComplete = "$('#row_" + @item.ID + "').remove()",
+                                    HttpMethod = "Delete"
+                                })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+</div>
+</div>

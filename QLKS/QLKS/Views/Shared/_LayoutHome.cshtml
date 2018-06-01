@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" dir="ltr" lang="en-US">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" dir="ltr" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" dir="ltr" lang="en-US">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html dir="ltr" lang="en-US">
+<!--<![endif]-->
+<head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Diamond | Hotel & Restaurents </title>
+
+    <!-- [favicon] begin -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Asset/images/favicon.ico" />
+    <link rel="icon" type="image/x-icon" src="~/Asset/images/favicon.ico" />
+    <!-- [favicon] end -->
+    <!-- CSS Main -->
+    <link href="~/Asset/css/home-ii.css" rel="stylesheet" />
+    <link href="~/Asset/css/" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" media="all" href="~~/Asset/css/reset.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="~/Asset/css/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen and (max-width: 960px)" href="~/Asset/css/lessthen960.css" />
+    <link rel="stylesheet" type="text/css" media="screen and (max-width: 600px)" href="~/Asset/css/lessthen600.css" />
+    <link rel="stylesheet" type="text/css" media="screen and (max-width: 480px)" href="~/Asset/css/lessthen480.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="~/Asset//css/memento.css" />
+
+    <!-- CSS Plugin -->
+    <link rel="stylesheet" href="~/Asset/css/prettyPhoto.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="~/Asset/css/tipsy.css" type="text/css" media="all" />
+    <link rel='stylesheet' href="~/Asset/css/buttons.min.css" type="text/css" media='all' />
+    <link rel='stylesheet' href="~/Asset/css/labels.min.css" type="text/css" media='all' />
+    <link rel='stylesheet' href="~/Asset/css/wells.min.css" type="text/css" media='all' />
+
+    <!-- CSS Slider -->
+    <link rel="stylesheet" href="~/Asset/css/slider-thumbnails.css" type="text/css" media="all" />
+
+    <link rel="stylesheet" type="text/css" media="all" href="~/Asset/css/homes/home-ii.css" />
+
+    <link rel='stylesheet' href="~/Asset/css/slider-elastic.css" type='text/css' media='all' />
+
+    <!-- FONTS -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans&amp;subset=latin%2Ccyrillic%2Cgreek&amp;ver=3.4.1" type="text/css" media="all" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Shadows+Into+Light&amp;subset=latin%2Ccyrillic%2Cgreek&amp;ver=3.4.1" type="text/css" media="all" />
+    <link rel='stylesheet' href='http://yourinspirationweb.com/demo/memento/wp-content/themes/memento/core/includes/css/font-awesome.css?ver=3.4.1' type='text/css' media='all' />
+    <link rel='stylesheet' href='http://yourinspirationweb.com/demo/memento/wp-content/themes/memento/fonts/socialico/stylesheet.css?ver=3.4.1' type='text/css' media='all' />
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed%3A300%7CPlayfair+Display%3A400italic&#038;ver=3.4.1' type='text/css' media='all' />
+
+    <!-- JavaScripts -->
+    <script type="text/javascript">
+            var yiw_prettyphoto_style = 'pp_default';
+    </script>
+    <script type="text/javascript" src="~/Asset/js/jquery.js"></script>
+    <script type="text/javascript" src="~/Asset/js/jquery.cycle.min.js"></script>
+    <script type="text/javascript" src="~/Asset/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="~/Asset/js/jquery.prettyPhoto.js"></script>
+    <script type="text/javascript" src="~/Asset/js/jquery.tipsy.js"></script>
+    <script type="text/javascript" src="~/Asset/js/jquery.tweetable.js"></script>
+    <script type="text/javascript" src="~/Asset/js/jquery.nivo.slider.pack.js"></script>
+    <script type="text/javascript" src="~/Asset/js/jquery.flexslider.min.js"></script>
+    <script type="text/javascript" src="~/Asset/js/jquery.aw-showcase.js"></script>
+    <script type="text/javascript" src="~/Asset/js/superfish.js"></script><!-- menu -->
+    <script type="text/javascript" src="~/Asset/js/jquery.eislideshow.js"></script>
+    <script type="text/javascript" src="~/Asset/js/swfobject.js"></script>
+    <script type="text/javascript" src="~/Asset/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="~/Asset/js/buttons.min.js"></script>
+    <script type="text/javascript" src="~/Asset/js/layerslider.kreaturamedia.jquery-min.js"></script>
+    <script type="text/javascript" src="~/Asset/js/jquery.quicksand.js"></script>
+
+</head>
+<body class="no_js responsive stretched-layout chrome ">
+
+    <!-- TOPBAR -->
+    @RenderPage("_LayoutHomeTopbar.cshtml")
+    <!-- END TOPBAR -->
+    <!-- START WRAPPER -->
+    <div class="wrapper group">
+        <!-- START HEADER -->
+        @RenderPage("_LayoutHomeHeader.cshtml")
+        <!-- END HEADER -->
+        <!-- SLIDER -->
+        <!-- BEGIN #slider -->
+       @RenderPage("_LayoutHomeSlider.cshtml")
+        <!-- ei-slider -->
+        <!-- END #slider -->
+        <script type="text/javascript">
+		        var     yiw_slider_type = 'elastic',
+		                yiw_slider_elastic_speed = 800,
+		                yiw_slider_elastic_timeout = 3000,
+		                yiw_slider_elastic_autoplay = true,
+		                yiw_slider_elastic_animation = 'sides';
+        </script>
+        <!-- /SLIDER -->
+       @RenderPage("_LayoutHomeSliderBehind.cshtml") 
+
+    </div>
+    <!-- END WRAPPER -->
+    @RenderBody()
+    <!-- START FOOTER -->
+    @RenderPage("_LayoutHomeFooter.cshtml")
+    <script type="text/javascript" src="~/Asset/js/jquery.custom.js"></script>
+    <script type="text/javascript" src="~/Asset/js/contact.js"></script>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36516261-21']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+    </script>
+</body>
+</html>

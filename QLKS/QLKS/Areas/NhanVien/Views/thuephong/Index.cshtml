@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Data_Access.DTO.THUEPHONGLOAD>
+
+
+@{
+    ViewBag.Title = "Test";
+    Layout = "~/Areas/NhanVien/Views/Shared/LayoutNhanVien.cshtml";
+}
+<p style="padding-left:20px">
+    <button type="submit" style=" text-decoration: none; color: black" class="btn btn-outline btn-danger">
+        @Html.ActionLink("Tạo Phiếu Thuê", "Test", "Test1")
+    </button>
+
+</p>
+
+
+<div class="col-lg-12">
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            Danh Sách Thuê Phòng
+        </div>
+        <div class="panel-body">
+            <table id="table_id" class="table" border="1">
+                <thead>
+                    <tr>
+                        <th>
+                            Nhân Viên
+                        </th>
+
+                        <th>
+                            Phòng
+                        </th>
+                        <th>
+                            CMND
+                        </th>
+                        <th>
+                            Ngày Thuê
+                        </th>
+                        <th>
+                            Ngày Trả
+                        </th>
+                        <th>
+                            Trạng Thái
+                        </th>
+                        <th>
+                            Tổng Tiền
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IDNHANVIEN)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PHONG)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CMND)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NGAYTHUE)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NGAYDI)
+                            </td>
+                            <td>
+                                @(item.STATUS == 1 ? "Đã thanh toán" : "Chưa thanh toán")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TONGTIEN)
+                            </td>
+
+                            <td>
+                                @*Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                                    @Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
+                                @(item.STATUS == 0 ? Html.Raw(@Html.ActionLink("Thanh toán", "ThanhToan", new { id = item.ID })) : @Html.Raw(""))
+                                @*@Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+                                @(item.STATUS == 0 ? Html.Raw(@Html.ActionLink("Xem Chi tiết", "DetailPhong", new { id = item.ID })) : Html.Raw(@Html.ActionLink("Xem Chi tiết hóa đơn", "Detail", new { id = item.ID })))
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

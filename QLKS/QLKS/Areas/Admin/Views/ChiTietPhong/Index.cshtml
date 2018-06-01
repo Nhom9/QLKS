@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Data_Access.DTO.CHITIETPHONGLOAD>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<p style="margin-left: 20px">
+    <button type="submit" style=" text-decoration: none; color: black" class="btn btn-outline btn-danger">
+        @Html.ActionLink("Thêm Người vào Phòng", "Create","ChiTietPhong")
+    </button>
+
+</p>
+
+<div class="col-lg-12">
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            Chi Tiết Phòng
+        </div>
+        <div class="panel-body">
+
+            <table id="table_id" class="table" border="1" style="margin-top: 20px">
+
+                <thead>
+                    <tr>
+                        <th>
+                            Họ & Tên 
+                        </th>
+                        <th>
+                            CMND 
+                        </th>
+                        <th>
+                            Trưởng Phòng
+                        </th>
+                        <th>
+                            Tên phòng
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HOTEN)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CMND)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TRUONGPHONG)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TenPhong)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
